@@ -11,20 +11,27 @@ class App extends Component {
     this.state = {
       VisorAtivo: false,
       DevAtivo: false,
-      Dados:'',
+      Dados: [],
+      usuarios: [],
+      IdDeatlhes:[],
     }
   }
 
+
   componentDidMount() {
     const db = firebase.database();
-    const dbRef = db.ref().child('Perfis');
-    dbRef.on('value', snap => {
-
+    const dbRef = db.ref().child('users');
+    dbRef.on('child_added', snap => {
       this.setState({
         Dados: snap.val()
       })
+      let map = new Map(Object.entries(this.state.Dados));
+      map.forEach(user => {
+        this.setState(prevState => ({
+          usuarios: [...prevState.usuarios, { user }]
+        }))
+      })
     })
-
   }
 
 
@@ -36,8 +43,10 @@ class App extends Component {
       DevAtivo: false
     });
   }
-  AbrirPoke = () => {
-    console.log('Pegou :>> ');
+  AbrirPoke = (e) => {
+    this.setState({
+      IdDeatlhes: e.user
+    });
     this.setState({
       DevAtivo: true
     });
@@ -48,12 +57,12 @@ class App extends Component {
 
   CarregarLista = () => {
     if (this.state.VisorAtivo) {
-      return (<Cadastro/>)
+      return (<Lista Dados={this.state.Dados} AbrirPoke={this.AbrirPoke} usuarios={this.state.usuarios} />)
+      // return(<Cadastro></Cadastro>)
     }
-    // <Lista Dados={this.state.Dados} AbrirPoke={this.AbrirPoke}   
-    // else if (this.state.DevAtivo) {
-    //   return (<Detalhes AbrirVisor={this.AbrirVisor} />)
-    // }
+    else if (this.state.DevAtivo) {
+      return (<Detalhes AbrirVisor={this.AbrirVisor} usuarios={this.state.usuarios} id={this.state.IdDeatlhes} />)
+    }
 
     return (
       <Botaoabrir onClick={this.AbrirVisor} />
@@ -61,18 +70,12 @@ class App extends Component {
     )
   }
 
-
-
-
-
-
-
   render() {
+
     return (
-   <Pokedex>
+      <Pokedex>
         <TopBars className='top-bar'></TopBars>
         <Tela>
-        {console.log('this.props.Dados >> ', this.state.Dados)}
           {this.CarregarLista()}
         </Tela>
         <BottomBars className='bottom-bar'></BottomBars>

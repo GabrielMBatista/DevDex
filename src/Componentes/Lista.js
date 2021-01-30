@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Cardpokes, Telapokes } from './Styled';
-
+import firebase from 'firebase';
 
 export default class Lista extends Component {
- 
-  render() {
 
+  render() {
+    let usuariosarray = this.props.usuarios
     return (
       <Telapokes>
-      <Cardpokes onClick={this.props.AbrirPoke}>
-       </Cardpokes>
-      <Cardpokes onClick={this.props.AbrirPoke}>
-      TESTE
-      </Cardpokes>
-      <Cardpokes onClick={this.props.AbrirPoke}>
-      TESTE
-      </Cardpokes>
-    </Telapokes>
+        {usuariosarray.map((e) => {
+          return (
+            <Cardpokes key={e.user.id} onClick={() => this.props.AbrirPoke(e)}>
+              <img src={e.user.foto}></img>
+              <p className='texto'> {e.user.username}</p>
+            </Cardpokes>
+          )
+        })}
+      </Telapokes>
     )
   }
 }
-
-
-
