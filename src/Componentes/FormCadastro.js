@@ -25,6 +25,8 @@ export default function Cadastro() {
   const [contato, setcontato] = useState('')
   const [linkedin, setlinkedin] = useState('')
   const [pontosF, setpontosF] = useState('')
+  const [pontosF2, setpontosF2] = useState('')
+  const [pontosF3, setpontosF3] = useState('')
   const [react, setreact] = useState(0)
   const [js, setjs] = useState(0)
   const [css, setcss] = useState(0)
@@ -33,20 +35,21 @@ export default function Cadastro() {
 
 
   function writeUserData() {
-    firebase.database().ref(`users/${Date.now()}`).set({
-      "id": {
+    firebase.database().ref(`users/cadastro`).push({
+        "id" :`${Date.now()}`,
         "username": nome,
         "contato": contato,
         "foto": foto,
         "descricao": descricao,
         "linkedin": linkedin,
         "pontosF": pontosF,
+        "pontosF2": pontosF2,
+        "pontosF3": pontosF3,
         "react": react,
         "js": js,
         "css": css,
         "html": html
-      }
-    });
+      });
     alert('Obrigado Pela Contribuição')
   }
 
@@ -67,6 +70,12 @@ export default function Cadastro() {
   }
   const inputpontosfortes = (event) => {
     setpontosF(event.target.value)
+  }
+  const inputpontosfortes2 = (event) => {
+    setpontosF2(event.target.value)
+  }
+  const inputpontosfortes3 = (event) => {
+    setpontosF3(event.target.value)
   }
   const inputReact = (event) => {
     setreact(event.target.value)
@@ -91,7 +100,9 @@ export default function Cadastro() {
         <p>Linkedin Link</p>
         <input value={linkedin} onChange={inputlinkedin} type="Text"></input>
         <p>Pontos Fortes</p>
-        <textarea value={pontosF} onChange={inputpontosfortes} type="Text"></textarea>
+        <input value={pontosF} onChange={inputpontosfortes} type="Text"></input>
+        <input value={pontosF2} onChange={inputpontosfortes2} type="Text"></input>
+        <input value={pontosF3} onChange={inputpontosfortes3} type="Text"></input>
         <p>Email contato</p>
         <input value={contato} onChange={inputcontato} type="E-mail"></input>
       </div>
