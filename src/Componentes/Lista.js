@@ -10,7 +10,8 @@ export default class Lista extends Component {
     return (
       <Telapokes>
       <Cardpokes onClick={this.props.AbrirPoke}>
-       </Cardpokes>
+      TESTE
+      </Cardpokes>
       <Cardpokes onClick={this.props.AbrirPoke}>
       TESTE
       </Cardpokes>

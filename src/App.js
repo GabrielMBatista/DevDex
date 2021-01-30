@@ -1,32 +1,18 @@
-import firebase from 'firebase';
+import { FirebaseDatabaseProvider } from "@react-firebase/database";
 import React, { Component } from 'react';
 import Lista from './Componentes/Lista';
 import Detalhes from './Componentes/Detalhes';
 import { Botaoabrir, BottomBars, Pokedex, Tela, TopBars } from './Componentes/Styled';
-import Cadastro from './Componentes/FormCadastro';
+
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       VisorAtivo: false,
       DevAtivo: false,
-      Dados:'',
     }
   }
-
-  componentDidMount() {
-    const db = firebase.database();
-    const dbRef = db.ref().child('Perfis');
-    dbRef.on('value', snap => {
-
-      this.setState({
-        Dados: snap.val()
-      })
-    })
-
-  }
-
 
   AbrirVisor = () => {
     this.setState({
@@ -48,12 +34,11 @@ class App extends Component {
 
   CarregarLista = () => {
     if (this.state.VisorAtivo) {
-      return (<Cadastro/>)
+      return (<Lista AbrirPoke={this.AbrirPoke} />)
     }
-    // <Lista Dados={this.state.Dados} AbrirPoke={this.AbrirPoke}   
-    // else if (this.state.DevAtivo) {
-    //   return (<Detalhes AbrirVisor={this.AbrirVisor} />)
-    // }
+    else if (this.state.DevAtivo) {
+      return (<Detalhes AbrirVisor={this.AbrirVisor} />)
+    }
 
     return (
       <Botaoabrir onClick={this.AbrirVisor} />
@@ -61,22 +46,17 @@ class App extends Component {
     )
   }
 
-
-
-
-
-
-
   render() {
     return (
-   <Pokedex>
-        <TopBars className='top-bar'></TopBars>
-        <Tela>
-        {console.log('this.props.Dados >> ', this.state.Dados)}
-          {this.CarregarLista()}
-        </Tela>
-        <BottomBars className='bottom-bar'></BottomBars>
-      </Pokedex>
+      <FirebaseDatabaseProvider>
+        <Pokedex>
+          <TopBars className='top-bar'></TopBars>
+          <Tela>
+            {this.CarregarLista()}
+          </Tela>
+          <BottomBars className='bottom-bar'></BottomBars>
+        </Pokedex>
+      </FirebaseDatabaseProvider>
     );
   }
 }
