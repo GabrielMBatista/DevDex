@@ -16,23 +16,52 @@ max-height: 40VH;
 export const Pokedex = styled.div`
 display: flex;
 flex-direction: column;
-max-width: 55vw;
-height: 95vh;
 margin: auto;
 margin-top: 1%;
+@media (min-width:100px) {
+    width:auto;
+    height:50vh;
+  };
+  @media (min-width:1000px) {
+    width:50vw;
+    height:70vh;
+    font-size:1.3em;
+  };
+  @media (min-width:1200px) {
+    width:40vw;
+    height:70vh;
+    font-size:1.5em;
+  };
+ 
 `
+
 
 export const Botaoabrir = styled.button`
 background-color: white;
 border: 8px solid #b4e5ec;
 border-radius: 50%;
-width: 100px;
-height: 100px;
 position: absolute;
 outline: none;
 &:hover {
   background-color: #372A34;
 };
+@media (min-width:100px) {
+width:70px;
+height:70px;
+};
+  @media (min-width:1000px) {
+    width:110px;
+    height:110px;
+    margin-left: 10%;
+    margin:  3% 0% 0% -2vw ;
+  }; 
+   @media (min-width:1200px) {
+    width:100px;
+    height:100px;
+    margin-left: 10%;
+    margin:  0% 0% 0% -1vw ;
+  };
+  
 `
 
 export const Tela = styled.section`
@@ -44,7 +73,7 @@ border-right: 5px solid white;
 border-left: 5px solid white;
 padding: 0.5px;
 max-height:75vh;
-max-width: 75vw;
+width:auto;
 z-index:100;
 `
 export const Telapokes = styled.section`
@@ -54,10 +83,10 @@ grid-template-rows: repeat(3,20fr);
 align-items: center;
 justify-content: space-around;
 align-items: center;
-max-width: 65vw;
+width:auto;
 height: 75vh;
 overflow:scroll;
-overflow-y:hidden;
+overflow-x:hidden;
 `
 
 export const Cardpokes = styled.section`
@@ -65,6 +94,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-evenly;
 align-items: center;
+text-align: center;
 width: 92%;
 height: 93%;
 margin-left: 4%;
@@ -115,15 +145,14 @@ align-items: center;
 flex-direction: column;
 justify-content: space-around;
 justify-items:center;
-font-size:1.6ch;
+overflow:scroll;
+overflow-x:hidden;
 `
 export const Sobremim = styled.div`
 display:flex;
 color: black;
 width: 99%;
-height: 55%;
-/* font-size:1.6ch; */
-text-indent: 0; 
+height: auto;
 padding:4%;
 `
 export const Grafico = styled.div`
@@ -153,4 +182,13 @@ grid-row: 3 / 4;
 grid-column: 2;
 margin-left: 10%;
 margin:  250% 0% 0% -4vw ;
+@media (min-width:100px) {
+margin-left: 10%;
+margin:  550% 0% 0% -10vw ;
+width: 40%;
+};
+  @media (min-width:1000px) {
+    margin-left: 10%;
+margin:  20% 0% 0% -2vw ;
+  };
 `
