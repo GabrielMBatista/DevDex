@@ -8,6 +8,9 @@ http://devdex-gabriel-cadastro.surge.sh/
 
 
 Um Obrigado especial para minhas cobaias que inseriram seus dados:
+
 Juliana Pedroso
+
 Marivone Araújo
+
 Jose Modolo
