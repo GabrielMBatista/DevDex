@@ -5,3 +5,9 @@ o codigo ainda era bem simples e não muito limpo mas tenho muito orgulho por te
 http://devdex-gabriel.surge.sh/
 
 http://devdex-gabriel-cadastro.surge.sh/
+
+
+Um Obrigado especial para minhas cobaias que inseriram seus dados:
+Juliana Pedroso
+Marivone Araújo
+Jose Modolo
